@@ -39,7 +39,7 @@ func (h *Handler) InitRoutes() *gin.Engine { // обработчик роуто�
 	api := router.Group("/")
 	{
 		api.POST("/a", h.addUrl)     // добавить url
-		api.GET("/s/:uid", h.getUrl) // получить сайт по code
+		api.GET("/s/:uid", h.getUrl) // получить сайт по uid
 	}
 
 	return router

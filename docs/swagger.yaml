@@ -34,6 +34,34 @@ paths:
       summary: AddUrl
       tags:
       - url
+  /s/:uid:
+    get:
+      consumes:
+      - application/json
+      description: get url
+      operationId: get-url
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+        "400":
+          description: Bad Request
+          schema: {}
+        "404":
+          description: Not Found
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+        default:
+          description: ""
+          schema: {}
+      summary: GetUrl
+      tags:
+      - url
 securityDefinitions:
   ApiKeyAuth:
     in: header

@@ -29,3 +29,12 @@ func (r *UrlPostgres) AddUrl(url string) (string, int, error) {
 	}
 	return uid, http.StatusOK, nil
 }
+
+func (r *UrlPostgres) GetUrl(uid string) (string, int, error) {
+	var needUrl string
+	err := r.db.QueryRow("SELECT url_get($1)", uid).Scan(&needUrl)
+	if err != nil {
+		return "", http.StatusInternalServerError, fmt.Errorf("ошибка выполнения функции url_get из базы данных, %s", err)
+	}
+	return needUrl, http.StatusOK, nil
+}

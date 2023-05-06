@@ -62,3 +62,36 @@ func (h *Handler) addUrl(c *gin.Context) { // добавление url
 		}
 	}
 }
+
+// @Summary		GetUrl
+// @Tags			url
+// @Description	get url
+// @ID				get-url
+// @Accept			json
+// @Produce		json
+// @Success		200		{integer}	integer				1
+// @Failure		400,404	{object}	error
+// @Failure		500		{object}	error
+// @Failure		default	{object}	error
+// @Router			/s/:uid [get]
+func (h *Handler) getUrl(c *gin.Context) {
+	var uid string = c.Param("uid")
+	resGetUrl, statusCode, err := h.services.GetUrl(uid)
+	if err != nil {
+		c.JSON(statusCode, map[string]interface{}{
+			"status":  statusCode,
+			"message": err.Error(),
+			"result":  resGetUrl,
+		})
+		return
+	}
+	if len(resGetUrl) > 0 {
+		c.Redirect(302, resGetUrl)
+	} else {
+		c.JSON(http.StatusOK, map[string]interface{}{
+			"status":  http.StatusOK,
+			"message": "ошибка получения ссылки",
+			"result":  resGetUrl,
+		})
+	}
+}

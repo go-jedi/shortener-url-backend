@@ -17,3 +17,7 @@ func NewUrlService(r repository.TodoUrl) *UrlService {
 func (s *UrlService) AddUrl(url string) (string, int, error) {
 	return s.repo.AddUrl(url)
 }
+
+func (s *UrlService) GetUrl(uid string) (string, int, error) {
+	return s.repo.GetUrl(uid)
+}

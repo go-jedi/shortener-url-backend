@@ -6,6 +6,7 @@ import (
 
 type TodoUrl interface {
 	AddUrl(url string) (string, int, error)
+	GetUrl(uid string) (string, int, error)
 }
 
 type Repository struct {
